@@ -14,6 +14,18 @@ productos.push(new Producto('CamisetaTitular', 19500))
 productos.push(new Producto('CamisetaAlternativa', 17750))
 productos.push(new Producto('CamisetaRompeViento', 21500))
 productos.push(new Producto('ShortBasket', 7500))
+productos.push(new Producto('ShortFutbol', 7500))
+
+//metodos array 
+//metodo find
+const metodoFind = productos.find(elemento => elemento.precio == 7500);
+console.log(metodoFind)
+//metodo filter 
+const metodoFilter = productos.filter(el => el.precio == 7500);
+console.log(metodoFilter)
+//metodo map
+const metodoMap = productos.map(el => el.precio == 7500);
+console.log(metodoMap)
 
 
 
