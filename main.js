@@ -3,18 +3,21 @@ let total = 0;
 
 
 class Producto {
-    constructor(nombre, precio) {
+    constructor(nombre, precio,img) {
         this.nombre = nombre
         this.precio = precio
+        this.img = img
         this.cantidad = 0
     }
 }
 
-productos.push(new Producto('CamisetaTitular', 19500))
-productos.push(new Producto('CamisetaAlternativa', 17750))
-productos.push(new Producto('CamisetaRompeViento', 21500))
-productos.push(new Producto('ShortBasket', 7500))
-productos.push(new Producto('ShortFutbol', 7500))
+productos.push(new Producto('Camiseta Titular', 19500, '../img/RemeraTitular.png'))
+productos.push(new Producto('Camiseta Alternativa', 17750, '../img/Camiseta-Alternativa.png'))
+productos.push(new Producto('Camiseta Rompe Viento', 21500, '../img/CamperaRompeviento.jpg'))
+productos.push(new Producto('Campera Negra', 7500, '../img/camperaNegra.jpg'))
+productos.push(new Producto('Short Futbol', 7500, '../img/shortFutbol.jpg'))
+productos.push(new Producto('Short Basket', 7500, '../img/shortBasket.jpg'))
+productos.push(new Producto('Zapatillas River', 25000, '../img/zapatillas.jpg'))
 
 //metodos array 
 //metodo find
@@ -26,6 +29,22 @@ console.log(metodoFilter)
 //metodo map
 const metodoMap = productos.map(el => el.precio == 7500);
 console.log(metodoMap)
+
+function boxCreate(){
+    const contenedorProductos = document.getElementById('container-productos');
+    productos.forEach((prod) =>{
+        const div = document.createElement('div');
+        div.classList.add('cajaProductos')
+        div.innerHTML = `
+        <h4>${prod.nombre}</h4>
+        <p>Precio: ${prod.precio}</p>
+        <p>Cantidad: ${prod.cantidad}</p>
+        <img src=${prod.img} alt='camiseta'/>
+        `
+        contenedorProductos.appendChild(div);
+    })
+}
+boxCreate();
 
 
 

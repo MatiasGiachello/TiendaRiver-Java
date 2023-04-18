@@ -22,6 +22,32 @@ body{
 
 }
 
+container-productos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+    flex-wrap: wrap;
+   
+}
+
+
+/* creamos una clase, que vamos a inyectarla en JS */
+.cajaProductos{
+    border: 1px solid #000;
+    border-radius: 20px;
+    padding: 50px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 2em;
+    flex-direction: column;
+}
+
+img{
+    width: 150px;
+}
+
 
 
 
