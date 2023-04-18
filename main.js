@@ -59,7 +59,7 @@ function envio() {
 
 function metodoDePago() {
     let metodo = prompt('ingrese el metodo de pago, tarjeta o efectivo')
-    if (metodo == 'tarjeta ' || metodo == 'TARJETA' || metodo == 'Tarjeta') {
+    if (metodo == 'tarjeta' || metodo == 'TARJETA' || metodo == 'Tarjeta') {
         total += 1750
         alert('hay un recargo de 1750, el total es de:' + total)
     } else if (metodo == 'efectivo' || metodo == 'EFECTIVO' || metodo == 'Efectivo') {
