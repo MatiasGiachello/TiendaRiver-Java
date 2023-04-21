@@ -1,59 +1,86 @@
- 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,300&display=swap');
-/* CSS BODY */
-body{
-    font-family: 'Montserrat', sans-serif;
-    overflow-x: hidden;
-}
-/* CSS MENU */
-#menu li > a{
-    font-size: 18px;
-    font-weight: bold;
-    color: black;
-}
-#menu form > button{
-    font-size: 18px;
-    font-weight: bold;
+ @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,300&display=swap');
+ /* CSS BODY */
 
-}
-/* SLIDER IMAGENES */
-.carousel-inner{
-    max-height: 25rem;
+ /* creacion de variables */
 
-}
-
-container-productos{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 500px;
-    flex-wrap: wrap;
-   
-}
-
-
-/* creamos una clase, que vamos a inyectarla en JS */
-.cajaProductos{
-    border: 1px solid #000;
-    border-radius: 20px;
-    padding: 50px 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 2em;
-    flex-direction: column;
-}
-
-img{
-    width: 150px;
-}
+ :root {
+     --fuente-media: 18px;
+ }
 
 
 
+ body {
+     overflow-x: hidden;
+     font-family: 'Montserrat', sans-serif;
+ }
 
-/* MEDIA QUERI */
-@media (max-width:768px) {
-    #intro{
-        width: 90% !important;
-    }  
-}
+ /* CSS MENU */
+ #menu li>a {
+     font-size: var(--fuente-media);
+     font-weight: bold;
+     color: black;
+ }
+
+ #menu form>button {
+     font-size: 18px;
+     font-weight: bold;
+
+ }
+
+ /* SLIDER IMAGENES */
+
+ #container-productos {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     height: 800px;
+     flex-wrap: wrap;
+
+ }
+
+ .title-product {
+     font-size: 16px;
+ }
+
+ .container-banner {
+     height: 400px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     background-image: url(../img/riverOriginal.png);
+     background-repeat: no-repeat;
+     background-position: center;
+     background-size: cover;
+ }
+
+
+
+
+
+ /* creamos una clase, que vamos a inyectarla en JS */
+ .cajaProductos {
+     border: 1px solid #000;
+     border-radius: 20px;
+     padding: 30px 10px;
+     display: flex;
+     justify-content: space-evenly;
+     align-items: center;
+     margin-left: 2em;
+     flex-direction: column;
+     width: 300px;
+
+ }
+
+ img {
+     width: 150px;
+ }
+
+
+
+
+ /* MEDIA QUERI */
+ @media (max-width:768px) {
+     #intro {
+         width: 90% !important;
+     }
+ }

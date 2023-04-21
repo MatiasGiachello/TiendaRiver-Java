@@ -1,50 +1,44 @@
-const productos = []
+let productos = []
 let total = 0;
 
+// Items para cumplir de la entrega
+// 1 - Funciones del carritto
+// 2 - Capturar eventos y salida por DOM de se agrego producto por ej.
+// 3 - Implementar un loading.
+// 4 - STORAGE y JSON.
+// 5 - Implementar libreria externa.
 
-class Producto {
-    constructor(nombre, precio,img) {
-        this.nombre = nombre
-        this.precio = precio
-        this.img = img
-        this.cantidad = 0
-    }
+
+// Abre entrega, 25 abril, hasta el 2 de mayo.
+
+
+//.JSON
+async function obtenerObjetos() {
+    const direccion = await fetch('./data.json')
+    const response = await direccion.json()
+    // guardamos en el array la respuesta de los datos
+    productos = response;
+    boxCreate()
+    console.log(response)
 }
+obtenerObjetos()
 
-productos.push(new Producto('Camiseta Titular', 19500, '../img/RemeraTitular.png'))
-productos.push(new Producto('Camiseta Alternativa', 17750, '../img/Camiseta-Alternativa.png'))
-productos.push(new Producto('Camiseta Rompe Viento', 21500, '../img/CamperaRompeviento.jpg'))
-productos.push(new Producto('Campera Negra', 7500, '../img/camperaNegra.jpg'))
-productos.push(new Producto('Short Futbol', 7500, '../img/shortFutbol.jpg'))
-productos.push(new Producto('Short Basket', 7500, '../img/shortBasket.jpg'))
-productos.push(new Producto('Zapatillas River', 25000, '../img/zapatillas.jpg'))
 
-//metodos array 
-//metodo find
-const metodoFind = productos.find(elemento => elemento.precio == 7500);
-console.log(metodoFind)
-//metodo filter 
-const metodoFilter = productos.filter(el => el.precio == 7500);
-console.log(metodoFilter)
-//metodo map
-const metodoMap = productos.map(el => el.precio == 7500);
-console.log(metodoMap)
-
-function boxCreate(){
+function boxCreate() {
     const contenedorProductos = document.getElementById('container-productos');
-    productos.forEach((prod) =>{
+    productos.forEach((prod) => {
         const div = document.createElement('div');
         div.classList.add('cajaProductos')
         div.innerHTML = `
-        <h4>${prod.nombre}</h4>
-        <p>Precio: ${prod.precio}</p>
-        <p>Cantidad: ${prod.cantidad}</p>
+        <h4 class='title-product'>${prod.nombre}</h4>
         <img src=${prod.img} alt='camiseta'/>
+        <p>Cantidad: ${prod.cantidad}</p>
+        <p>Precio: $ ${prod.precio}</p>
         `
         contenedorProductos.appendChild(div);
     })
 }
-boxCreate();
+
 
 
 
@@ -133,44 +127,6 @@ function getProducts() {
     saludoSalida()
 
 }
-
 getProducts()
-
-// alert('Ingrese el producto de la tienda que desee llevar, para salir ingrese 0')
-// let seleccionarCantidad;
-
-
-
-// const cantidad = (cant, precio) => {
-//     return cant * precio
-// }
-
-
-// while (seleccionarProductos != 0) {
-//     switch (seleccionarProductos) {
-//         case 1:
-//             seleccionarCantidad = Number(prompt('el producto seleccionado es CamisetaTitular, indique la cantidad'))
-//             total += cantidad(seleccionarCantidad, 19500)
-//             break;
-//         case 2:
-//             seleccionarCantidad = Number(prompt('el producto seleccionado es CamisetaAlternativa, indique la cantidad'))
-//             total += cantidad(seleccionarCantidad, 17750)
-//             break;
-//         case 3:
-//             seleccionarCantidad = Number(prompt('el producto seleccionado es CamperaRompeViento, indique la cantidad'))
-//             total += cantidad(seleccionarCantidad, 21500)
-//             break;
-//         case 4:
-//             seleccionarCantidad = Number(prompt('el producto seleccionado es , ShortBasket indique la cantidad'))
-//             total += cantidad(seleccionarCantidad, 7500)
-//             break;
-
-//         default:
-//             break;
-//     }
-//     seleccionarProductos = Number(prompt('1-CamisetaTitular $19500 2-CamisetaAlternativa $17750 CamperaRompeViento $21500 4-ShortBasket $7500'))
-// }
-
-// alert('el total de la compra es de:' + total)
 
 

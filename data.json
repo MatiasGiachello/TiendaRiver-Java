@@ -1,0 +1,26 @@
+[
+    {
+       "id":1,"nombre":"Camiseta Titular","precio":19500,"img":"../img/RemeraTitular.png","cantidad":1
+    },
+    {
+        "id":2,"nombre":"Camiseta Alternativa","precio":17750,"img":"../img/Camiseta-Alternativa.png","cantidad":1
+    },   
+    {
+        "id":3,"nombre":"Campera Rompe Viento","precio":21500,"img":"../img/CamperaRompeviento.jpg","cantidad":1
+    },
+    {
+        "id":4,"nombre":"Campera Negra","precio":25000,"img":"../img/camperaNegra.png","cantidad":1
+    },
+    {
+        "id":5,"nombre":"Short Futbol","precio":7500,"img":"../img/shortFutbol.jpg","cantidad":1
+    },
+    {
+        "id":6,"nombre":"Short Basket","precio":7500,"img":"../img/shortBasket.jpg","cantidad":1
+    },
+    {
+        "id":7,"nombre":"Zapatillas Adidas River","precio":25000,"img":"../img/zapatillas.jpg","cantidad":1
+    }
+
+
+]
+
