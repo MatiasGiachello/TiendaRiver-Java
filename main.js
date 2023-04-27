@@ -1,9 +1,9 @@
-let productos = [];
+let products = [];
 let total = 0;
-let arrayCarrito = [];
-const carritoContainer = document.getElementById("carrito-de-compras");
-const botonVaciar = document.getElementById('eliminar-carrito');
-const precioTotal = document.getElementById('precio-total');
+let arrayCard = [];
+const cardContainer = document.getElementById("carrito-de-compras");
+const buttomdelate= document.getElementById('eliminar-carrito');
+const Totalprice = document.getElementById('precio-total');
 let modalCounter = document.getElementById('btn-menu');
 let buttonCompra = document.getElementById("comprar-btn")
 
@@ -16,9 +16,9 @@ buttonCompra.addEventListener('click', () => {
         showConfirmButton: false,
         timer: 1500
     })
-    arrayCarrito.length = 0;
-    precioTotal.innerText = 0;
-    renderizarCarrito()
+    arrayCard.length = 0;
+    Totalprice.innerText = 0;
+    renderizarCard()
 })
 
 
@@ -34,8 +34,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function aJson() {
     if (localStorage.getItem('cart')) {
-        arrayCarrito = JSON.parse(localStorage.getItem('cart'))
-        renderizarCarrito()
+        arrayCard = JSON.parse(localStorage.getItem('cart'))
+        renderizarCard()
     }
 }
 
@@ -45,15 +45,15 @@ async function obtenerObjetos() {
     const direccion = await fetch("./data.json");
     const response = await direccion.json();
     // guarda en el array la respuesta de los datos
-    productos = response;
+    products = response;
     boxCreate();
 }
 
 
 
 function boxCreate() {
-    const contenedorProductos = document.getElementById("container-productos");
-    productos.forEach((prod) => {
+    const containerProducts = document.getElementById("container-productos");
+    products.forEach((prod) => {
         const div = document.createElement("div");
         div.classList.add("cajaProductos");
         div.innerHTML = `
@@ -63,7 +63,7 @@ function boxCreate() {
         <p>Precio: $ ${prod.precio}</p>
         <a class="agregar__carrito" id="button${prod.id}">Agregar al carrito</a>
         `;
-        contenedorProductos.appendChild(div);
+        containerProducts.appendChild(div);
         // agregamos funcionalidad al boton
         const agregar = document.getElementById(`button${prod.id}`);
         agregar.addEventListener("click", () => {
@@ -74,38 +74,38 @@ function boxCreate() {
                 showConfirmButton: false,
                 timer: 1500
             })
-            pushearCarrito(`${prod.id}`);
+            pushearCard(`${prod.id}`);
         });
     });
 }
 
 
 // agregar producto al carrito
-function pushearCarrito(id) {
-    const producto = productos.find((p) => p.id == id);
+function pushearCard(id) {
+    const producto = products.find((p) => p.id == id);
     if (!producto) {
         return;
     }
-    const existe = arrayCarrito.some((prod) => prod.id == id);
+    const existe = arrayCard.some((prod) => prod.id == id);
     if (existe) {
-        arrayCarrito.map((prod) => {
+        arrayCard.map((prod) => {
             if (prod.id == id) {
                 prod.cantidad++;
             }
         });
     } else {
-        arrayCarrito.push({ ...producto, cantidad: 1 });
+        arrayCard.push({ ...producto, cantidad: 1 });
     }
-    localStorage.setItem('cart', JSON.stringify(arrayCarrito))
-    renderizarCarrito();
+    localStorage.setItem('cart', JSON.stringify(arrayCard))
+    renderizarCard();
 }
 // renderizamos el carrito
-function renderizarCarrito() {
-    carritoContainer.innerHTML = "";
-    if (arrayCarrito.length < 1) {
+function renderizarCard() {
+    cardContainer.innerHTML = "";
+    if (arrayCard.length < 1) {
         return;
     }
-    arrayCarrito.forEach(function renderizarProducto(producto) {
+    arrayCard.forEach(function renderizarProducto(producto) {
         let productoContainer = document.createElement("div");
         productoContainer.id = producto.id;
         productoContainer.classList.add("cajaProductos");
@@ -117,7 +117,7 @@ function renderizarCarrito() {
          <a class="cantidad">Cantidad:${producto.cantidad}</a>
          <a class="agregar__carrito agregar__carrito--2" id="eliminar${producto.id}">Retirar</a>
          `;
-        carritoContainer.appendChild(productoContainer);
+        cardContainer.appendChild(productoContainer);
         const eliminar = document.getElementById(`eliminar${producto.id}`);
         eliminar.addEventListener("click", (id) => {
             Swal.fire({
@@ -127,11 +127,11 @@ function renderizarCarrito() {
                 showConfirmButton: false,
                 timer: 1500
             })
-            eliminarDelCarrito(producto.id);
+            eliminarDelCard(producto.id);
         });
 
 
-        precioTotal.innerText = arrayCarrito.reduce((acc, producto) => acc + producto.cantidad * producto.precio, 0);
+        Totalprice.innerText = arrayCard.reduce((acc, producto) => acc + producto.cantidad * producto.precio, 0);
 
     });
 }
@@ -139,33 +139,34 @@ function renderizarCarrito() {
 
 
 
-function eliminarDelCarrito(id) {
-    const existe = arrayCarrito.some((prod) => prod.id == id);
+function eliminarDelCard(id) {
+    const existe = arrayCard.some((prod) => prod.id == id);
     if (existe) {
-        arrayCarrito.map((prod) => {
+        arrayCard.map((prod) => {
             if (prod.id == id) {
                 prod.cantidad--;
                 if (prod.cantidad < 1) {
-                    arrayCarrito = arrayCarrito.filter((prod) => prod.id != id);
+                    arrayCard = arrayCard.filter((prod) => prod.id != id);
                 }
             }
         });
     }
 
-    precioTotal.textContent = arrayCarrito.reduce((acc, producto) => acc - producto.precio, 0);
-    localStorage.setItem('cart', JSON.stringify(arrayCarrito));
+    Totalprice.textContent = arrayCard.reduce((acc, producto) => acc - producto.precio, 0);
+    localStorage.setItem('cart', JSON.stringify(arrayCard));
     
 
-    renderizarCarrito();
+    renderizarCard();
 }
 
 
 
-botonVaciar.addEventListener('click', () => {
+buttomdelate.addEventListener('click', () => {
     alert('se vacio del carrito')
-    arrayCarrito.length = 0;
-    precioTotal.innerText = arrayCarrito.reduce((acc, producto) => acc - producto.precio, 0);
-    localStorage.setItem('cart', JSON.stringify(arrayCarrito))
-    renderizarCarrito();
+    arrayCard.length = 0;
+    Totalprice.innerText = arrayCard.reduce((acc, producto) => acc - producto.precio, 0);
+    localStorage.setItem('cart', JSON.stringify(arrayCard))
+    renderizarCard();
 })
 
+ 
