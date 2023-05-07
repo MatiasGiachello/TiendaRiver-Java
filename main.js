@@ -1,12 +1,12 @@
 let products = [];
 let total = 0;
 let arrayCard = [];
-const cardContainer = document.getElementById("carrito-de-compras");
-const buttomdelate= document.getElementById('eliminar-carrito');
-const Totalprice = document.getElementById('precio-total');
+const cardContainer = document.getElementById("modal-container");
+const buttomdelate = document.getElementById('eliminar-carrito');
+const totalprice = document.getElementById('precio-total');
 let modalCounter = document.getElementById('btn-menu');
 let buttonCompra = document.getElementById("comprar-btn")
-
+let counter = document.getElementById('counter')
 
 buttonCompra.addEventListener('click', () => {
     Swal.fire({
@@ -17,7 +17,8 @@ buttonCompra.addEventListener('click', () => {
         timer: 1500
     })
     arrayCard.length = 0;
-    Totalprice.innerText = 0;
+    counter.innerText = 0;
+    totalprice.innerText = 0;
     renderizarCard()
 })
 
@@ -29,7 +30,70 @@ document.addEventListener("DOMContentLoaded", () => {
     boxCreate();
     aJson();
     obtenerObjetos();
+    // Event listener para el botón de filtrar por precio menor
+    const filtroMenorBtn = document.getElementById("filtro-menor");
+    filtroMenorBtn.addEventListener("click", () => {
+        filtrarPorPrecioMenor();
+    });
+
+    // Event listener para el botón de filtrar por precio mayor
+    const filtroMayorBtn = document.getElementById("filtro-mayor");
+    filtroMayorBtn.addEventListener("click", () => {
+        filtrarPorPrecioMayor();
+    });
 });
+
+function filtrarPorPrecioMenor() {
+    const precioLimite = 8500; // Precio límite para el filtro por precio menor
+
+    const productosFiltrados = products.filter((producto) => {
+        return producto.precio <= precioLimite;
+    });
+
+    renderizarProductosFiltrados(productosFiltrados);
+}
+
+function filtrarPorPrecioMayor() {
+    const precioLimite = 10000; // Precio límite para el filtro por precio mayor
+
+    const productosFiltrados = products.filter((producto) => {
+        return producto.precio > precioLimite;
+    });
+
+    renderizarProductosFiltrados(productosFiltrados);
+}
+
+function renderizarProductosFiltrados(productos) {
+    const containerProducts = document.getElementById("container-productos");
+    containerProducts.innerHTML = ""; // Limpiamos el contenedor antes de renderizar los productos filtrados
+
+    productos.forEach((prod) => {
+        const div = document.createElement('div')
+        div.classList.add('cajaProductos')
+        div.innerHTML = `
+      <div class="container-cart-card-card">
+       <h5 class="titulo-cart">${prod.nombre}</h5>
+       <h4 class="price-cart">$${prod.precio}</h4>
+       <a class="cantidad-cart">Cantidad:${prod.cantidad}</a>
+      <img src=${prod.img} alt="" class="img-cart"/>
+      <a class="agregar__carrito" id="button${prod.id}">Agregar al carrito</a>
+       </div>
+       `;
+
+        containerProducts.appendChild(div)
+        const agregar = document.getElementById(`button${prod.id}`);
+        agregar.addEventListener("click", () => {
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Tu producto fue agregado correctamente',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            pushearCard(`${prod.id}`);
+        });
+    });
+}
 
 
 function aJson() {
@@ -108,14 +172,14 @@ function renderizarCard() {
     arrayCard.forEach(function renderizarProducto(producto) {
         let productoContainer = document.createElement("div");
         productoContainer.id = producto.id;
-        productoContainer.classList.add("cajaProductos");
         productoContainer.innerHTML = `
-   
-         <h5 class="titulo">${producto.nombre}:</h5>
-         <img src=${producto.img} alt=""/>
-         <h4 class="price">$${producto.precio}</h4>
-         <a class="cantidad">Cantidad:${producto.cantidad}</a>
-         <a class="agregar__carrito agregar__carrito--2" id="eliminar${producto.id}">Retirar</a>
+        <div class="container-cart-card">
+         <h5 class="titulo-cart">${producto.nombre}</h5>
+         <h4 class="price-cart">$${producto.precio}</h4>
+         <a class="cantidad-cart">Cantidad:${producto.cantidad}</a>
+        <img src=${producto.img} alt="" class="img-cart"/>
+         <a class="agregar_carrito agregar_carrito--2" id="eliminar${producto.id}">Retirar</a>
+         </div>
          `;
         cardContainer.appendChild(productoContainer);
         const eliminar = document.getElementById(`eliminar${producto.id}`);
@@ -129,15 +193,11 @@ function renderizarCard() {
             })
             eliminarDelCard(producto.id);
         });
-
-
-        Totalprice.innerText = arrayCard.reduce((acc, producto) => acc + producto.cantidad * producto.precio, 0);
+        counter.innerText = arrayCard.length
+        totalprice.innerText = arrayCard.reduce((acc, producto) => acc + producto.cantidad * producto.precio, 0);
 
     });
 }
-
-
-
 
 function eliminarDelCard(id) {
     const existe = arrayCard.some((prod) => prod.id == id);
@@ -145,6 +205,7 @@ function eliminarDelCard(id) {
         arrayCard.map((prod) => {
             if (prod.id == id) {
                 prod.cantidad--;
+                counter.innerText = 0;
                 if (prod.cantidad < 1) {
                     arrayCard = arrayCard.filter((prod) => prod.id != id);
                 }
@@ -152,21 +213,18 @@ function eliminarDelCard(id) {
         });
     }
 
-    Totalprice.textContent = arrayCard.reduce((acc, producto) => acc - producto.precio, 0);
+    totalprice.textContent = arrayCard.reduce((acc, producto) => acc - producto.precio, 0);
     localStorage.setItem('cart', JSON.stringify(arrayCard));
-    
+
 
     renderizarCard();
 }
 
-
-
 buttomdelate.addEventListener('click', () => {
     alert('se vacio del carrito')
     arrayCard.length = 0;
-    Totalprice.innerText = arrayCard.reduce((acc, producto) => acc - producto.precio, 0);
+    counter.innerText = 0;
+    totalprice.innerText = arrayCard.reduce((acc, producto) => acc - producto.precio, 0);
     localStorage.setItem('cart', JSON.stringify(arrayCard))
     renderizarCard();
 })
-
- 
