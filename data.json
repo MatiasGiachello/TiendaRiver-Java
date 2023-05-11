@@ -19,6 +19,24 @@
     },
     {
         "id":7,"nombre":"Zapatillas Adidas River","precio":25000,"img":"../img/zapatillas.jpg","cantidad":1
+    },
+    {
+        "id":8,"nombre":"Musculosa","precio":16000,"img":"../img/musculosa-1.png","cantidad":1
+    },
+    {
+        "id":9,"nombre":"Musculosa","precio":16000,"img":"../img/musculosa-2.png","cantidad":1
+    },
+    {
+        "id":10,"nombre":"Buzo Rojo Mujer","precio":25000,"img":"../img/buzo-mujer.png","cantidad":1
+    },
+    {
+        "id":11,"nombre":"Pantalon Largo ","precio":25000,"img":"../img/pantalon-entrenamiento.png","cantidad":1
+    },
+    {
+        "id":12,"nombre":"Buzo Medio Cierre","precio":25000,"img":"../img/campera-mediocierre.png","cantidad":1
+    },
+    {
+        "id":13,"nombre":"Botines","precio":27500,"img":"../img/botines.png","cantidad":1
     }
 
 
