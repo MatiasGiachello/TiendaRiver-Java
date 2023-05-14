@@ -30,7 +30,7 @@ body {
     margin-left: 25px;
 }
 .navbar-brand{
-    margin-right: 60px;
+    margin-right: 350px;
 }
 .menu_items{
     display: flex;
@@ -55,15 +55,37 @@ body {
 .navbar-toggler-icon{
    color: #fff !important;
 }
-
+.btn-fill{
+    padding: 13px 30px;
+    background-color: #fff;
+    border: 1px solid #000;
+    border-radius: 10px;
+    margin-left: 10px;
+}
+.contain-btns{
+    display: flex;
+    height: 60px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 25px;
+}
+.agregar_carrito{
+    text-decoration: none;
+    color: #000;
+    cursor: pointer;
+}
+.precioProducto{
+    margin-right: 20px;
+}
 /* SLIDER IMAGENES */
 
 #container-productos {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 1200px;
     flex-wrap: wrap;
+    height: max-content;
+    padding-bottom: 100px;
 
 }
 
@@ -89,15 +111,15 @@ body {
 
 /* creamos una clase, que vamos a inyectarla en JS */
 .cajaProductos {
-    /* border: 2px solid #000000; */
-    /* border-radius: 10px; */
+    background-color: rgba(246, 246, 246, 0.821);
     padding: 30px 10px;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     margin-left: 3em;
+    margin-top: 2em;
     flex-direction: column;
-    width: 500px;
+    width: 300px;
 
 }
 
@@ -194,6 +216,30 @@ font-size: 16px;
 }
 
 
+/* footer */
+
+
+.footer {
+height: 120px;
+background-color: #000;
+display: flex;
+justify-content: center;
+}
+.footer__lista {
+  display: flex;
+  align-items: center;
+  margin-right: 160px;
+}
+
+.logos-footer {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    margin-left: 200px;
+    align-items: center;
+    justify-content: center;
+}
+
 
 /* MEDIA QUERI */
 @media (max-width:768px) {
@@ -201,23 +247,3 @@ font-size: 16px;
         width: 90% !important;
     }
 }
-
-/* .footer {
-    background-color: black;
-    height: 50vh;
-}
-
-.logos-footer {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    flex: row;
-    justify-content: space-around;
-}
-.footer__lista {
-    padding: 1px;
-    background-color: black;
-    margin: 8px;
-    display: flex;
-    justify-content: space-around;
-    list-style: none; } */

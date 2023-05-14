@@ -75,7 +75,7 @@ function renderizarProductosFiltrados(productos) {
        <h5 class="titulo-cart">${prod.nombre}</h5>
        <h4 class="price-cart">$${prod.precio}</h4>
        <a class="cantidad-cart">Cantidad:${prod.cantidad}</a>
-      <img src=${prod.img} alt="" class="img-cart"/>
+      <img src=${prod.img} alt=""/>
       <a class="agregar__carrito" id="button${prod.id}">Agregar al carrito</a>
        </div>
        `;
@@ -178,7 +178,7 @@ function renderizarCard() {
          <h4 class="price-cart">$${producto.precio}</h4>
          <a class="cantidad-cart">Cantidad:${producto.cantidad}</a>
         <img src=${producto.img} alt="" class="img-cart"/>
-         <a class="agregar_carrito agregar_carrito--2" id="eliminar${producto.id}">Retirar</a>
+         <a class="agregar_carrito" id="eliminar${producto.id}">Retirar</a>
          </div>
          `;
         cardContainer.appendChild(productoContainer);
